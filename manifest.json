@@ -1,20 +1,23 @@
 {
-  "name": "My App Name",
-  "short_name": "App",
+  "name": "Bahrain Delivery",
+  "short_name": "BahrainDel",
+  "description": "تطبيق توصيل البحرين لطلب الطلبات",
   "start_url": "/kfjghucu/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "https://via.placeholder.com/192",
+      "src": "https://via.placeholder.com/192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "https://via.placeholder.com/512",
+      "src": "https://via.placeholder.com/512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
