@@ -1,0 +1,247 @@
+:root {
+    --red: #DA291C;
+    --red-dark: #b31d12;
+    --bg: #fdfdfd;
+    --card-bg: #ffffff;
+    --input-bg: #f8f9fa;
+    --benefit-blue: #005EB8;
+    --success: #27ae60;
+    --text-main: #2d3436;
+    --text-sub: #636e72;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+body { 
+    margin: 0; 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    background: var(--bg); 
+    color: var(--text-main);
+    overflow-x: hidden; 
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.6;
+}
+
+/* تحسين شكل الصفحات وانتقالها */
+.page { 
+    display: none; 
+    width: 100vw; 
+    height: 100vh; /* يجعل الصفحة بحجم الشاشة بالضبط */
+    position: fixed; 
+    top: 0; left: 0;
+    flex-direction: column; 
+    background: var(--bg);
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.active-page { display: flex !important; }
+
+/* الهيدر - لمسة زجاجية مع تعديل سهم التراجع */
+.header { 
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    height: 75px; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 10px; 
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.back-btn { 
+    font-size: 22px; 
+    color: var(--red); 
+    cursor: pointer; 
+    border: none; 
+    background: #fff0f0; 
+    width: 48px; 
+    height: 48px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 50%; 
+    transition: 0.3s all cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1001;
+    -webkit-appearance: none;
+}
+
+.back-btn::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.back-btn:active { 
+    transform: scale(0.85); 
+    background: #ffdada; 
+}
+
+.header-title { 
+    flex: 1; 
+    text-align: center; 
+    font-weight: 700; 
+    font-size: 1.15rem; 
+    color: var(--text-main);
+    margin-right: -48px; 
+}
+
+/* -------------------------------------
+   التعديل الأهم هنا: السماح بالنزول والصعود 
+-------------------------------------- */
+.content { 
+    flex: 1; /* يأخذ باقي مساحة الشاشة تحت الهيدر */
+    padding: 20px 15px 120px 15px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* يسمح بالتمرير العامودي */
+    -webkit-overflow-scrolling: touch; /* يجعل التمرير ناعماً وسلساً جداً في الجوال */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* البطاقات - تصميم فخم */
+.card { 
+    background: var(--card-bg); 
+    padding: 25px; 
+    border-radius: 24px; 
+    box-shadow: var(--shadow); 
+    width: 92%; max-width: 450px; 
+    margin-bottom: 20px; 
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+/* المدخلات - مريحة للمس */
+.input-group { 
+    background: var(--input-bg); 
+    border-radius: 16px; 
+    padding: 15px; 
+    margin-bottom: 12px; 
+    border: 1px solid transparent; 
+    transition: 0.3s;
+    display: flex; align-items: center;
+}
+
+.input-group:focus-within {
+    border-color: var(--red);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(218, 41, 28, 0.1);
+}
+
+.input-group input, .input-group select { 
+    border: none; background: transparent; 
+    width: 100%; outline: none; 
+    font-size: 16px; color: var(--text-main);
+    font-weight: 500;
+}
+
+/* الأزرار الرئيسية - ملمس تفاعلي */
+.btn-red { 
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: white; border: none; 
+    width: 100%; padding: 20px; 
+    border-radius: 18px; 
+    font-weight: 700; font-size: 18px; 
+    box-shadow: 0 8px 20px rgba(218, 41, 28, 0.3);
+    cursor: pointer; transition: 0.3s;
+}
+
+.btn-red:active { transform: scale(0.96); box-shadow: none; }
+.btn-red:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* صفحة الدفع - الأزرار الكبيرة */
+.pay-methods { 
+    display: flex; gap: 15px; 
+    margin-top: 20px; width: 100%; 
+}
+
+.pay-btn { 
+    flex: 1; padding: 25px 15px; 
+    border-radius: 20px; 
+    border: 2px solid #f0f0f0; 
+    background: white; 
+    cursor: pointer; 
+    text-align: center; 
+    transition: 0.3s all cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+
+.pay-btn i { font-size: 24px; margin-bottom: 5px; }
+
+.selected-cash { 
+    border-color: var(--success) !important; 
+    background: #f0fff4 !important; 
+    color: var(--success);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.1);
+}
+
+.selected-benefit { 
+    border-color: var(--benefit-blue) !important; 
+    background: #f0f7ff !important; 
+    color: var(--benefit-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 94, 184, 0.1);
+}
+
+/* تاغ السعر الفخم */
+.price-tag { 
+    background: linear-gradient(135deg, #fffafa 0%, #fff 100%);
+    border: 2px solid var(--red);
+    border-style: dashed;
+    border-radius: 25px; 
+    padding: 30px; text-align: center; 
+    width: 85%; margin-bottom: 25px; 
+}
+
+.price-tag h2 { 
+    font-size: 36px; color: var(--red); 
+    margin: 0; font-weight: 800; 
+}
+
+/* تفاصيل الطلب في التاريخ */
+.order-card { 
+    background: white; border-radius: 20px; 
+    margin-bottom: 15px; padding: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    border: 1px solid #f1f1f1;
+}
+
+.order-card:active { background: #fafafa; }
+
+/* أوفرلاي التفاصيل */
+#full-details-overlay {
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+}
+
+.info-card-huge { 
+    background: white; padding: 20px; 
+    border-radius: 20px; margin-bottom: 15px; 
+    border-right: 6px solid #eee;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* إخفاء أسهم الأرقام */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* تنسيقات إضافية للخريطة وصندوق البحث */
+.map-frame { height: 350px; width: 100%; border-radius: 15px; margin-bottom: 15px; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.gps-btn { background: white; border: 1.5px solid var(--red); color: var(--red); padding: 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-bottom: 10px; transition: 0.3s; }
+.google-search-box { margin-top: 10px; padding: 12px 15px; width: 85%; border-radius: 12px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: inherit; font-size: 15px; direction: rtl; outline: none; }
